@@ -8,17 +8,17 @@
 		var audioEl = document.querySelector('#audio');
 	    //var ball =  document.querySelector('a-sphere');
 
-
+        audio.addEventListener("ended", function() {
+					audio.currentTime = 0;
+					playing = false;
+			    });
 
 		AFRAME.registerComponent('markerhandler', {
 			init: function() {
 
 			    // Set up the tick throttling. Will check if marker is active every 500ms
 			    this.tick = AFRAME.utils.throttleTick(this.tick, 500, this);
-			    audio.addEventListener("ended", function() {
-					audio.currentTime = 0;
-					playing = false;
-			    });
+
 			},
 
 		  	tick: function(t, dt) {
@@ -30,7 +30,7 @@
 		        	playing = true;
 		        }
 		        else {
-		        	alert("MARKER IS PRESENT1");
+		        	alert("MARKER IS PRESENT2");
 		        	audio.pause();
 		        }
 				//ball.addEventListener('click', function () { playPauseAudio(audio); console.log("Audio Play Toggle") });
