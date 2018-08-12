@@ -8,16 +8,17 @@
 		var audioEl = document.querySelector('#audio');
 	    //var ball =  document.querySelector('a-sphere');
 
-        audio.addEventListener("ended", function() {
-					audio.currentTime = 0;
-					playing = false;
-			    });
+
 
 		AFRAME.registerComponent('markerhandler', {
 			init: function() {
 
 			    // Set up the tick throttling. Will check if marker is active every 500ms
-			    this.tick = AFRAME.utils.throttleTick(this.tick, 5000, this);
+			    this.tick = AFRAME.utils.throttleTick(this.tick, 500, this);
+			    audioEl.addEventListener("ended", function() {
+					audioEl.currentTime = 0;
+					playing = false;
+			    });
 
 			},
 
@@ -26,12 +27,12 @@
 			    if (document.querySelector("#hiroMarker").object3D.visible == true && playing == false) {
 			        // MARKER IS PRESENT
 			        alert("MARKER IS PRESENT1");
-		        	audio.play();
+		        	audioEl.play();
 		        	playing = true;
 		        }
 		        else {
 		        	alert("MARKER IS PRESENT2");
-		        	audio.pause();
+		        	audioEl.pause();
 		        }
 				//ball.addEventListener('click', function () { playPauseAudio(audio); console.log("Audio Play Toggle") });
 
