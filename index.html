@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+	<script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+	<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+	<script>
+	    var playing = false;
+		var audioEl = document.querySelector('#music');
+	    //var ball =  document.querySelector('a-sphere');
+
+		audio.addEventListener("ended", function() {
+			audio.currentTime = 0;
+			playing = false;
+	    });
+
+		AFRAME.registerComponent('markerhandler', {
+			init: function() {
+
+			    // Set up the tick throttling. Will check if marker is active every 500ms
+			    this.tick = AFRAME.utils.throttleTick(this.tick, 500, this);
+			},
+
+		  	tick: function(t, dt) {
+
+			    if (document.querySelector("#hiroMarker").object3D.visible == true && playing == false) {
+			        // MARKER IS PRESENT
+			        //alert("MARKER IS PRESENT1");
+		        	audioEl.components.sound.playSound();
+		        	playing = true;
+		        }
+		        else {
+		        	audioEl.components.sound.pauseSound();
+		        }
+				//ball.addEventListener('click', function () { playPauseAudio(audio); console.log("Audio Play Toggle") });
+
+		  	}
+
+		});
+
+	</script>
+	<script>
+			AFRAME.registerComponent('audiohandler', {
+			  init:function() {
+			     let playing = false;
+			     let audioEl =  document.querySelector('#music');
+
+			     this.el.addEventListener('click', () => {
+			          if(!playing) {
+			              audioEl.components.sound.playSound();
+			           } else {
+			              audioEl.components.sound.pauseSound();
+			              audio.currentTime = 0;
+			           }
+			           playing = !playing;
+			     });
+			  }
+			})
+	</script>
+	<body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
+	</div>
+	   <a-scene id="a-scene" cursor="rayOrigin: mouse" light="defaultLightsEnabled: true" embedded arjs="sourceType:webcam; trackingMethod: best; debugUIEnabled: false; maxDetectionRate:30;">
+	      <a-assets>
+    		 <audio id="audio" src="data/happy-birthday-musicbox.mp3"></audio>
+  	      </a-assets>
+  	      <a-assets>
+  	        <a-asset-item id="saucer-obj" src="models/spaceship.obj"></a-asset-item>
+            <a-asset-item id="saucer-mtl" src="models/spaceship.mtl"></a-asset-item>
+          </a-assets>
+
+          <a-marker id="hiroMarker"  markerhandler emitevents="true" type='pattern' url='patterns/pattern-lr.patt'>
+	          <a-text value="Thank You Friend!"
+				position="0.15 0.5 0.5"
+				rotation="-90 0 0"
+				font="mozillavr"
+				color="#4682b4"
+				side="double"
+				align="center"
+				width="2">
+			   <a-animation
+			    attribute="position"
+			    dur="1000"
+			    fill="forwards"
+			    direction="alternate"
+			    to="0.15 0.55 0.5"
+			    easing="ease-in-out"
+			    repeat="indefinite">
+			    </a-animation>
+              </a-text>
+			  <a-sphere id="sphere" audiohandler src="data/octuauts.jpg" rotation="0 180 0" segments-height="46" position="0 0 0" scale="0.5 0.5 0.5">
+                    <a-animation
+						 attribute="rotation"
+						 dur="8000"
+						 fill="forwards"
+						 to="360 0 0"
+						 repeat="indefinite">
+					</a-animation>
+		       </a-sphere>
+ 			   <a-entity id="saucer" position="0 0.5 1" rotation="90 0 0" scale="0.05 0.05 0.05" shadow="cast: true" obj-model="obj: #saucer-obj; mtl: #saucer-mtl">
+					<a-animation attribute="position" dur="8000" direction="alternate" fill="forwards" from="2 2.05 1" to="-2 -2.05 0" repeat="indefinite">
+					</a-animation>
+                   <a-animation attribute="rotation" dur="8000" direction="alternate" fill="forwards" from="90 0 0" to="450 0 0" repeat="indefinite">
+	               </a-animation>
+	           </a-entity>
+	       </a-marker>
+	       <a-entity id="music" position="0.5 0.5 0.5" sound="src: #audio; autoplay: false; loop: true;"></a-entity>
+  	       <a-entity camera></a-entity>
+		</a-scene>
+	</body>
+<html>
