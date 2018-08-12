@@ -7,7 +7,10 @@
 	    var playing = false;
 		var audioEl = document.querySelector('#audio');
 	    //var ball =  document.querySelector('a-sphere');
-
+        audioEl.addEventListener("ended", function() {
+					audioEl.currentTime = 0;
+					playing = false;
+		});
 
 
 		AFRAME.registerComponent('markerhandler', {
@@ -15,10 +18,6 @@
 
 			    // Set up the tick throttling. Will check if marker is active every 500ms
 			    this.tick = AFRAME.utils.throttleTick(this.tick, 500, this);
-			    audioEl.addEventListener("ended", function() {
-					audioEl.currentTime = 0;
-					playing = false;
-			    });
 
 			},
 
