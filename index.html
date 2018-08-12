@@ -8,30 +8,32 @@
 		var audioEl = document.querySelector('#music');
 	    //var ball =  document.querySelector('a-sphere');
 
-		audio.addEventListener("ended", function() {
-			audio.currentTime = 0;
-			playing = false;
-	    });
+
 
 		AFRAME.registerComponent('markerhandler', {
 			init: function() {
 
 			    // Set up the tick throttling. Will check if marker is active every 500ms
 			    this.tick = AFRAME.utils.throttleTick(this.tick, 500, this);
+			    audio.addEventListener("ended", function() {
+					audio.currentTime = 0;
+					playing = false;
+			    });
 			},
 
 		  	tick: function(t, dt) {
-
+				var audio = audioEl.components.sound;
 			    if (document.querySelector("#hiroMarker").object3D.visible == true && playing == false) {
 			        // MARKER IS PRESENT
 			        //alert("MARKER IS PRESENT1");
-		        	audioEl.components.sound.playSound();
+		        	audio.playSound();
 		        	playing = true;
 		        }
 		        else {
-		        	audioEl.components.sound.pauseSound();
+		        	audio.pauseSound();
 		        }
 				//ball.addEventListener('click', function () { playPauseAudio(audio); console.log("Audio Play Toggle") });
+
 
 		  	}
 
@@ -43,12 +45,13 @@
 			  init:function() {
 			     let playing = false;
 			     let audioEl =  document.querySelector('#music');
+			     let audio = audioEl.components.sound
 
 			     this.el.addEventListener('click', () => {
 			          if(!playing) {
-			              audioEl.components.sound.playSound();
+			              audio.playSound();
 			           } else {
-			              audioEl.components.sound.pauseSound();
+			              audio.pauseSound();
 			              audio.currentTime = 0;
 			           }
 			           playing = !playing;
