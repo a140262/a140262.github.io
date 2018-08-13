@@ -44,7 +44,6 @@
 		if (!playing){
 	   	    alert("PLAY SOUND");
 		    audio.playSound();
-		    playing = true;
 		 }
 		else{
 	   	    alert("PAUSE SOUND");
@@ -52,10 +51,10 @@
 		//     intro.stopSound();
 		     audio.currentTime = 0;
 		//     intro.currentTime = 0;
-		     playing = false;
+
 	        }
 
-
+		playing = false;
      };
 
 	</script>
@@ -75,7 +74,7 @@
   	    </a-assets> -->
         <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" id="animated-marker" type='pattern' url='patterns/pattern-lr.patt'>
 	        	<a-text value="Thank You Friend!"
-				position="0.05 0.1 1.2"
+				position="0.05 0.1 1"
 				rotation="-90 0 0"
 				font="mozillavr"
 				color="#4682b4"
@@ -87,7 +86,7 @@
 			    dur="1000"
 			    fill="forwards"
 			    direction="alternate"
-			    to="0.05 0.2 1.2"
+			    to="0.05 0.2 1"
 			    easing="ease-in-out"
 			    repeat="indefinite">
 			    </a-animation>
@@ -99,11 +98,11 @@
 				fill="forwards"
 				animation-mixer="loop:repeat">
 			</a-gltf-model>
-			<a-entity id="plane1" position="0 0.25 -2" scale="0.25 0.25 0.25 shadow="cast: true" rotation="0 180 0" obj-model="obj: #plane-obj; mtl: #plane-mtl">
+			<a-entity id="plane1" position="0 -0.25 -2" scale="0.25 0.25 0.25 shadow="cast: true" rotation="0 180 0" obj-model="obj: #plane-obj; mtl: #plane-mtl">
               <a-animation attribute="position" dur="2000" direction="alternate" to="-3 -1.5 0.5" repeat="indefinite">
               </a-animation>
             </a-entity>
-            <a-entity id="plane2" position="0 0.25 -2" scale="0.25 0.25 0.25 shadow="cast: true" rotation="180 0 0" obj-model="obj: #plane-obj; mtl: #plane-mtl">
+            <a-entity id="plane2" position="0 -0.25 -2" scale="0.25 0.25 0.25 shadow="cast: true" rotation="180 0 0" obj-model="obj: #plane-obj; mtl: #plane-mtl">
              <a-animation attribute="position" dur="2000" direction="alternate" to="3 -1.5 0.5" repeat="indefinite">
              </a-animation>
             </a-entity>
