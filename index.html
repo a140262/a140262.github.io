@@ -27,12 +27,12 @@
 		           }
 		        if (document.querySelector("#hiroMarker").object3D.visible == false && playing == true){
 		        	//alert("MARKER IS NOT PRESENT");
-		        	audio.stopSound();
+		        	audio.pauseSound();
 		        	audio.currentTime = 0;
 		        	playing = false;
 		          }
 
-				 var ball = document.querySelector('#sphere');
+			     var ball = document.querySelector('#sphere');
 			     ball.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle")});
 
 		  	}
@@ -51,7 +51,7 @@
 		  }
 		 else{
 	   	  //   alert("PAUSE SOUND");
-		     audio.stopSound();
+		     audio.pauseSound();
 		     audio.currentTime = 0;
 		  }
 		 playing = false;
