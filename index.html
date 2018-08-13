@@ -48,14 +48,13 @@
          if (!playing){
 	  	    alert("PLAY SOUND");
 		    audio.playSound();
-		    playing = true;
 		  }
 		 else{
 	   	     alert("PAUSE SOUND");
 		     audio.stopSound();
 		     audio.currentTime = 0;
-		     playing = false;
 		  }
+		 playing = false;
 
      };
     </script>
