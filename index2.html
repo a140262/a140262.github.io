@@ -68,7 +68,7 @@
   	    </a-assets>
         <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" id="animated-marker" type='pattern' url='patterns/pattern-lr.patt'>
 	        	<a-text value="Thank You Friend!"
-				position="0.05 0.1 -1.2"
+				position="0.05 0.1 1.2"
 				rotation="-90 0 0"
 				font="mozillavr"
 				color="#4682b4"
@@ -80,7 +80,7 @@
 			    dur="1000"
 			    fill="forwards"
 			    direction="alternate"
-			    to="0.05 0.2 -1.2"
+			    to="0.05 0.2 1.2"
 			    easing="ease-in-out"
 			    repeat="indefinite">
 			    </a-animation>
@@ -88,7 +88,7 @@
 			<a-gltf-model src="#animated-asset"
 				scale="0.28 0.28 0.28"
 				rotation="-90 0 0"
-				position="0 -1 1"
+				position="0 -1 1.2"
 				fill="forwards"
 				animation-mixer="loop:repeat">
 			</a-gltf-model>
