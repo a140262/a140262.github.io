@@ -2,7 +2,7 @@
 <script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
 <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 <script>
-    var playing = false;
+    //var playing = false;
     //var start = true;
 
 	AFRAME.registerComponent('markerhandler', {
@@ -18,49 +18,49 @@
 			var audioEl =  document.querySelector('#rollout');
 			var audio = audioEl.components.sound;
 
-		    if (document.querySelector("#animated-marker").object3D.visible == true && playing == false) {
+		    if (document.querySelector("#animated-marker").object3D.visible == true) {
 				intro.playSound();
-				//wait(1000);
-				//audio.playSound();
-				playing = true;
+				wait(1000);
+				audio.playSound();
+				//playing = true;
 			}
 			else{
 				intro.stopSound();
-				//audio.stopSound();
+				audio.stopSound();
 				intro.currentTime = 0;
-				//audio.currentTime = 0;
+				audio.currentTime = 0;
 
-				playing = false;
+				//playing = false;
 
 			}
 
-			var model =  document.querySelector('[gltf-model]');
-			model.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle") });
+			// var model =  document.querySelector('[gltf-model]');
+			// model.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle") });
 	  	}
 
 	});
 
-	  function playPauseAudio(){
-	  	//alert("MARKER IS PRESENT4");
-		var audioEl =  document.querySelector('#rollout');
-		var audio = audioEl.components.sound;
-		if (!playing){
-	  	    alert("PLAY SOUND");
-			audio.playSound();
-			playing = true;
-		 }
-		else{
-	  	    alert("PAUSE SOUND");
-		    audio.stopSound();
-		    intro.stopSound();
-		    audio.currentTime = 0;
-		    intro.currentTime = 0;
-		    playing = false;
+	 //  function playPauseAudio(){
+	 //  	//alert("MARKER IS PRESENT4");
+		// var audioEl =  document.querySelector('#rollout');
+		// var audio = audioEl.components.sound;
+		// if (!playing){
+	 //  	    alert("PLAY SOUND");
+		// 	audio.playSound();
+		// 	playing = true;
+		//  }
+		// else{
+	 //  	    alert("PAUSE SOUND");
+		//     audio.stopSound();
+		//     intro.stopSound();
+		//     audio.currentTime = 0;
+		//     intro.currentTime = 0;
+		//     playing = false;
 
-		  }
+		//   }
 
 
-    };
+    // };
 
 	</script>
 
