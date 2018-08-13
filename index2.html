@@ -13,23 +13,23 @@
 		},
 
 	  	tick: function(t, dt) {
-		var introEl =  document.querySelector('#intro');
-		var intro = introEl.components.sound;
+			var introEl =  document.querySelector('#intro');
+			var intro = introEl.components.sound;
 
-	    if (document.querySelector("#animated-marker").object3D.visible == true && playing == false) {
-			intro.playSound();
-			// start = false;
-			playing = true;
-		}
-		else{
-			intro.pauseSound();
+		    if (document.querySelector("#animated-marker").object3D.visible == true && playing == false) {
+				intro.playSound();
+				playing = true;
+			}
+			else{
+				intro.pauseSound();
+				audio.currentTime = 0;
+			}
 
-		}
-		var model =  document.querySelector('[gltf-model]');
-		model.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle") });
+			var model =  document.querySelector('[gltf-model]');
+			model.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle") });
 
-		playing = false;
-	  }
+			playing = false;
+	  	}
 
 	});
 
