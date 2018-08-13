@@ -20,21 +20,22 @@
 
 		    if (document.querySelector("#animated-marker").object3D.visible == true && playing == false) {
 				intro.playSound();
-				wait(1000);
-				audio.playSound();
-				//playing = true;
+				//wait(1000);
+				//audio.playSound();
+				playing = true;
 			}
 			else{
 				intro.stopSound();
-				audio.stopSound();
+				//audio.stopSound();
 				intro.currentTime = 0;
-				audio.currentTime = 0;
+				//audio.currentTime = 0;
+
+				playing = false;
+
 			}
 
 			var model =  document.querySelector('[gltf-model]');
 			model.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle") });
-
-			playing = true;
 	  	}
 
 	});
@@ -54,7 +55,7 @@
 		    intro.stopSound();
 		    audio.currentTime = 0;
 		    intro.currentTime = 0;
-		    playing = !playing;
+		    playing = false;
 
 		  }
 
@@ -102,11 +103,11 @@
 				fill="forwards"
 				animation-mixer="loop:repeat">
 			</a-gltf-model>
-			<a-entity id="plane1" position="0 0.25 -2" scale="0.15 0.15 0.15 shadow="cast: true" rotation="0 180 0" obj-model="obj: #plane-obj; mtl: #plane-mtl">
+			<a-entity id="plane1" position="0 0.25 -2" scale="0.25 0.25 0.25 shadow="cast: true" rotation="0 180 0" obj-model="obj: #plane-obj; mtl: #plane-mtl">
               <a-animation attribute="position" dur="2000" direction="alternate" to="-3 -1.5 0.5" repeat="indefinite">
               </a-animation>
             </a-entity>
-            <a-entity id="plane2" position="0 0.25 -2" scale="0.15 0.15 0.15 shadow="cast: true" rotation="180 0 0" obj-model="obj: #plane-obj; mtl: #plane-mtl">
+            <a-entity id="plane2" position="0 0.25 -2" scale="0.25 0.25 0.25 shadow="cast: true" rotation="180 0 0" obj-model="obj: #plane-obj; mtl: #plane-mtl">
              <a-animation attribute="position" dur="2000" direction="alternate" to="3 -1.5 0.5" repeat="indefinite">
              </a-animation>
             </a-entity>
