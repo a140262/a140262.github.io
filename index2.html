@@ -22,7 +22,7 @@
 				intro.playSound();
 				wait(1000);
 				audio.playSound();
-				playing = true;
+				//playing = true;
 			}
 			else{
 				intro.pauseSound();
@@ -31,35 +31,35 @@
 				audio.currentTime = 0;
 			}
 
-			// var model =  document.querySelector('[gltf-model]');
-			// model.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle") });
+			var model =  document.querySelector('[gltf-model]');
+			model.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle") });
 
 			playing = true;
 	  	}
 
 	});
 
-	 //  function playPauseAudio(){
-	 //  	//alert("MARKER IS PRESENT4");
-		// var audioEl =  document.querySelector('#rollout');
-		// var audio = audioEl.components.sound;
-		// if (!playing){
-	 //  	    alert("PLAY SOUND");
-		// 	audio.playSound();
-		// 	playing = true;
-		//  }
-		// else{
-	 //  	    alert("PAUSE SOUND");
-		//     audio.pauseSound();
-		//     intro.pauseSound();
-		//     audio.currentTime = 0;
-		//     intro.currentTime = 0;
+	  function playPauseAudio(){
+	  	//alert("MARKER IS PRESENT4");
+		var audioEl =  document.querySelector('#rollout');
+		var audio = audioEl.components.sound;
+		if (!playing){
+	  	    alert("PLAY SOUND");
+			audio.playSound();
+			playing = true;
+		 }
+		else{
+	  	    alert("PAUSE SOUND");
+		    audio.pauseSound();
+		    intro.pauseSound();
+		    audio.currentTime = 0;
+		    intro.currentTime = 0;
+		    playing = !playing;
+
+		  }
 
 
-		//   }
-  //       playing = !playing;
-
-  //   };
+    };
 
 	</script>
 
@@ -69,11 +69,13 @@
 	        <a-asset-item id="animated-asset" src="models/scene.gltf"></a-asset-item>
   	        <a-asset-item id="plane-obj" src="models/model.obj"></a-asset-item>
             <a-asset-item id="plane-mtl" src="models/materials.mtl"></a-asset-item>
+            <a-asset-item id="audio1" src="data/data/autobots.mp3" response-type="arraybuffer"></a-asset-item>
+            <a-asset-item id="audio2" src="data/data/autobots-3.mp3" response-type="arraybuffer"></a-asset-item>
 	    </a-assets>
-  	    <a-assets>
+  	 <!--    <a-assets>
   	    	<audio id="audio1" src="data/autobots.mp3" preload="auto"></audio>
     		<audio id="audio2" src="data/autobots-3.mp3" preload="auto"></audio>
-  	    </a-assets>
+  	    </a-assets> -->
         <a-marker markerhandler emitevents="true" cursor="rayOrigin: mouse" id="animated-marker" type='pattern' url='patterns/pattern-lr.patt'>
 	        	<a-text value="Thank You Friend!"
 				position="0.05 0.1 1.2"
