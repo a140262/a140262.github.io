@@ -15,14 +15,20 @@
 	  	tick: function(t, dt) {
 			var introEl =  document.querySelector('#intro');
 			var intro = introEl.components.sound;
+			var audioEl =  document.querySelector('#rollout');
+			var audio = audioEl.components.sound;
 
 		    if (document.querySelector("#animated-marker").object3D.visible == true && playing == false) {
 				intro.playSound();
+				wait(1000);
+				audio.playSound();
 				playing = true;
 			}
 			else{
 				intro.pauseSound();
+				audio.pauseSound();
 				intro.currentTime = 0;
+				audio.currentTime = 0;
 			}
 
 			// var model =  document.querySelector('[gltf-model]');
