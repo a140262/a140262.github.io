@@ -25,15 +25,15 @@
 		        	audio.playSound();
 		        	playing = true;
 		           }
-		           if (document.querySelector("#hiroMarker").object3D.visible == false && playing == true) 
+		           if (document.querySelector("#hiroMarker").object3D.visible == false && playing == true)
 		        	//alert("MARKER IS NOT PRESENT");
 		        	audio.stopSound();
 		        	audio.currentTime = 0;
 		        	playing = false;
 		          }
-				
+
 			   ball.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle")});
-			 
+
 		  	}
 
 
@@ -41,7 +41,7 @@
 
 	 function playPauseAudio(){
 	  	alert("MARKER IS PRESENT4");
-		
+
 		 var audioEl =  document.querySelector('#music');
 		 var audio = audioEl.components.sound;
                  if (!playing)
@@ -53,12 +53,12 @@
 	   	     alert("PAUSE SOUND");
 		     audio.stopSound();
 		     audio.currentTime = 0;
-		     playing = false;	 
+		     playing = false;
 		  }
 
      };
     </script>
- 
+
 	<body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
 	</div>
 	   <a-scene id="a-scene" cursor="rayOrigin: mouse" light="defaultLightsEnabled: true" embedded arjs="sourceType:webcam; trackingMethod: best; debugUIEnabled: false; maxDetectionRate:30;">
@@ -71,7 +71,7 @@
             <a-asset-item id="saucer-mtl" src="models/spaceship.mtl"></a-asset-item>
           </a-assets>
 
-          <a-marker id="hiroMarker"  markerhandler emitevents="true" type='pattern' url='patterns/pattern-lr.patt'>
+          <a-marker id="hiroMarker"  markerhandler emitevents="true" type='pattern' url='patterns/pattern-lo.patt'>
 	          <a-text value="Thank You Friend!"
 				position="0.05 0.5 0.5"
 				rotation="-90 0 0"
