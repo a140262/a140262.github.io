@@ -8,7 +8,10 @@
 		var audioEl = document.querySelector('#audio');
 	    //var ball =  document.querySelector('a-sphere');
 
-
+   		audioEl.addEventListener("ended", function() {
+					audioEl.currentTime = 0;
+		 			playing = false;
+		});
 
 		AFRAME.registerComponent('markerhandler', {
 			init: function() {
@@ -30,10 +33,7 @@
 		        // 	alert("MARKER IS PRESENT2");
 		        // 	audioEl.components.sound.pauseSound();
 		        // }
-		         audioEl.addEventListener("ended", function() {
-					audioEl.currentTime = 0;
-		 			playing = false;
-				});
+
 				//ball.addEventListener('click', function () { playPauseAudio(audio); console.log("Audio Play Toggle") });
 
 		  	}
