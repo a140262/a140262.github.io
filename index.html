@@ -6,8 +6,6 @@
 	<script>
 	    var playing = false;
 	    var audioEl = document.querySelector('#music');
-		var audio = audioEl.components.sound;
-
 
 		AFRAME.registerComponent('markerhandler', {
 			init: function() {
@@ -18,7 +16,7 @@
 			},
 
 		  	tick: function(t, dt) {
-
+				var audio = audioEl.components.sound;
 			    if (document.querySelector("#hiroMarker").object3D.visible == true && playing == false) {
 			        // MARKER IS PRESENT
 			        //alert("MARKER IS PRESENT");
