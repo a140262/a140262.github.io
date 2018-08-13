@@ -25,35 +25,35 @@
 				intro.currentTime = 0;
 			}
 
-			var model =  document.querySelector('[gltf-model]');
-			model.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle") });
+			// var model =  document.querySelector('[gltf-model]');
+			// model.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle") });
 
 			playing = true;
 	  	}
 
 	});
 
-	  function playPauseAudio(){
-	  	//alert("MARKER IS PRESENT4");
-		var audioEl =  document.querySelector('#rollout');
-		var audio = audioEl.components.sound;
-		if (!playing){
-	  	    alert("PLAY SOUND");
-			audio.playSound();
-			playing = true;
-		 }
-		else{
-	  	    alert("PAUSE SOUND");
-		    audio.pauseSound();
-		    intro.pauseSound();
-		    audio.currentTime = 0;
-		    intro.currentTime = 0;
+	 //  function playPauseAudio(){
+	 //  	//alert("MARKER IS PRESENT4");
+		// var audioEl =  document.querySelector('#rollout');
+		// var audio = audioEl.components.sound;
+		// if (!playing){
+	 //  	    alert("PLAY SOUND");
+		// 	audio.playSound();
+		// 	playing = true;
+		//  }
+		// else{
+	 //  	    alert("PAUSE SOUND");
+		//     audio.pauseSound();
+		//     intro.pauseSound();
+		//     audio.currentTime = 0;
+		//     intro.currentTime = 0;
 
 
-		  }
-        playing = !playing;
+		//   }
+  //       playing = !playing;
 
-    };
+  //   };
 
 	</script>
 
