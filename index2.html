@@ -15,33 +15,31 @@
 	  	tick: function(t, dt) {
 			var introEl =  document.querySelector('#intro');
 			var intro = introEl.components.sound;
-			var audioEl =  document.querySelector('#rollout');
-			var audio = audioEl.components.sound;
 
 		    if (document.querySelector("#animated-marker").object3D.visible == true) {
 				intro.playSound();
-				audio.playSound();
+				// audio.playSound();
 				//playing = true;
 			}
 			else{
 				intro.stopSound();
-				audio.stopSound();
+				// audio.stopSound();
 				intro.currentTime = 0;
-				audio.currentTime = 0;
+				// audio.currentTime = 0;
 
 				//playing = false;
 
 			}
 
-			// var model =  document.querySelector('[gltf-model]');
-			// model.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle") });
+			var model =  document.querySelector('[gltf-model]');
+			model.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle") });
 	  	}
 
 	});
 
 	 //  function playPauseAudio(){
 	 //  	//alert("MARKER IS PRESENT4");
-		// var audioEl =  document.querySelector('#rollout');
+	 //  	var audioEl =  document.querySelector('#rollout');
 		// var audio = audioEl.components.sound;
 		// if (!playing){
 	 //  	    alert("PLAY SOUND");
@@ -59,8 +57,30 @@
 		//   }
 
 
-    // };
+  //   };
 
+	</script>
+	 <script>
+	 	    var playing = false;
+			AFRAME.registerComponent('audiohandler', {
+			  init:function() {
+
+			     var audioEl =  document.querySelector('#rollout');
+				 var audio = audioEl.components.sound;
+			     this.el.addEventListener('click', () => {
+			          if(!playing) {
+			              audio.playSound();
+			              playing = true;
+			           } else {
+			              audio.pauseSound();
+			              audio.currentTime = 0;
+			              playing = !playing;
+
+			           }
+			           // playing = !playing;
+			     });
+			  }
+			})
 	</script>
 
 <body style="margin : 0px; overflow: hidden;">
@@ -95,7 +115,7 @@
 			    repeat="indefinite">
 			    </a-animation>
             </a-text>
-			<a-gltf-model src="#animated-asset"
+			<a-gltf-model audiohandler src="#animated-asset"
 				scale="0.28 0.28 0.28"
 				rotation="-90 0 0"
 				position="0 -1 1.2"
