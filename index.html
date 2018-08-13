@@ -7,10 +7,10 @@
 	    var playing = false;
 	    //var ball =  document.querySelector('a-sphere');
 
-   		audioEl.addEventListener("ended", function() {
-					audioEl.currentTime = 0;
-		 			playing = false;
-		});
+  //  		audioEl.addEventListener("ended", function() {
+		// 			audioEl.currentTime = 0;
+		//  			playing = false;
+		// });
 
 		AFRAME.registerComponent('markerhandler', {
 			init: function() {
@@ -25,12 +25,12 @@
 				var audio = audioEl.components.sound;
 			    if (document.querySelector("#hiroMarker").object3D.visible == true && playing == false) {
 			        // MARKER IS PRESENT
-			        alert("MARKER IS PRESENT1");
+			        alert("MARKER IS PRESENT");
 		        	audio.playSound();
 		        	playing = true;
 		        }
 		        else {
-		        	alert("MARKER IS PRESENT2");
+		        	alert("MARKER IS NOT PRESENT");
 		        	audio.pauseSound();
 		        	audio.currentTime = 0;
 		        }
@@ -46,15 +46,15 @@
 			AFRAME.registerComponent('audiohandler', {
 			  init:function() {
 			     let playing = false;
-			     let audioEl =  document.querySelector('#music');
-			     let audio = audioEl.components.sound
+			     let soundEl = document.querySelector('#music');
+			     let sound = soundEl.components.sound
 
 			     this.el.addEventListener('click', () => {
 			          if(!playing) {
-			              audio.playSound();
+			              sound.playSound();
 			           } else {
-			              audio.pauseSound();
-			              audio.currentTime = 0;
+			              sound.pauseSound();
+			              sound.currentTime = 0;
 			           }
 			           playing = !playing;
 			     });
