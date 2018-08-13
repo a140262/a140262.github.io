@@ -6,6 +6,7 @@
 	<script>
 	    var playing = false;
 
+
 		AFRAME.registerComponent('markerhandler', {
 			init: function() {
 
@@ -28,13 +29,33 @@
 		        	audio.pauseSound();
 		        	audio.currentTime = 0;
 		        }
-				playing = false;
+				playing = true;
 				//ball.addEventListener('click', function () { playPauseAudio(audio); console.log("Audio Play Toggle") });
 
 		  	}
 
 		});
 
+	</script>
+	<script>
+		  	var playing = false;
+			AFRAME.registerComponent('audiohandler', {
+			  init:function() {
+
+			     var soundEl = document.querySelector('#music');
+			     var sound = soundEl.components.sound
+
+			     this.el.addEventListener('click', () => {
+			          if(!playing) {
+			              sound.playSound();
+			           } else {
+			              sound.pauseSound();
+			              sound.currentTime = 0;
+			           }
+			           playing = !playing;
+			     });
+			  }
+			})
 	</script>
 	<body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
 	</div>
