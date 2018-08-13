@@ -23,17 +23,17 @@
 			        // MARKER IS PRESENT
 			        //alert("MARKER IS PRESENT");
 		        	audio.playSound();
-		        	playing = true;
 		        }
 		        else {
 		        	//alert("MARKER IS NOT PRESENT");
 		        	audio.stopSound();
 		        	audio.currentTime = 0;
 		        }
-				playing = true;
+
 				ball.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle")});
 
 		  	}
+		  	playing = true;
 
 		});
 
