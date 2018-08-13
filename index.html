@@ -25,12 +25,12 @@
 				var audio = audioEl.components.sound;
 			    if (document.querySelector("#hiroMarker").object3D.visible == true && playing == false) {
 			        // MARKER IS PRESENT
-			        alert("MARKER IS PRESENT");
+			        //alert("MARKER IS PRESENT");
 		        	audio.playSound();
 		        	playing = true;
 		        }
 		        else {
-		        	alert("MARKER IS NOT PRESENT");
+		        	//alert("MARKER IS NOT PRESENT");
 		        	audio.pauseSound();
 		        	audio.currentTime = 0;
 		        }
