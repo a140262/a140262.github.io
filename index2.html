@@ -3,7 +3,7 @@
 <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 <script>
     var playing = false;
-    var start = true;
+    //var start = true;
 
 	AFRAME.registerComponent('markerhandler', {
 
@@ -13,20 +13,22 @@
 		},
 
 	  	tick: function(t, dt) {
+		var introEl =  document.querySelector('#intro');
+		var intro = introEl.components.sound;
 
 	    if (document.querySelector("#animated-marker").object3D.visible == true && playing == false) {
-			var introEl =  document.querySelector('#intro');
-			var intro = introEl.components.sound;
-			if (start){
-				intro.playSound();
-				start = false;
-				playing = true;
-			}
-			var model =  document.querySelector('[gltf-model]');
-			model.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle") });
+			intro.playSound();
+			// start = false;
+			playing = true;
+		}
+		else{
+			intro.pauseSound();
 
 		}
-		playing = true;
+		var model =  document.querySelector('[gltf-model]');
+		model.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle") });
+
+		playing = false;
 	  }
 
 	});
