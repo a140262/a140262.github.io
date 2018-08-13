@@ -5,7 +5,7 @@
 	<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 	<script>
 	    var playing = false;
-	    var audioEl = document.querySelector('#music');
+
 
 		AFRAME.registerComponent('markerhandler', {
 			init: function() {
@@ -16,7 +16,8 @@
 			},
 
 		  	tick: function(t, dt) {
-				var audio = audioEl.components.sound;
+			    var audioEl = document.querySelector('#music');
+			    var audio = audioEl.components.sound;
 			    if (document.querySelector("#hiroMarker").object3D.visible == true && playing == false) {
 			        // MARKER IS PRESENT
 			        //alert("MARKER IS PRESENT");
@@ -37,11 +38,12 @@
 
 	</script>
 	<script>
+		  	var playing = false;
 			AFRAME.registerComponent('audiohandler', {
 			  init:function() {
-			     let playing = false;
-			     let soundEl = document.querySelector('#music');
-			     let sound = soundEl.components.sound
+
+			     var soundEl = document.querySelector('#music');
+			     var sound = soundEl.components.sound
 
 			     this.el.addEventListener('click', () => {
 			          if(!playing) {
