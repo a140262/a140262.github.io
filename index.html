@@ -5,12 +5,13 @@
 	<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 	<script>
 	    var playing = false;
-		var audioEl = document.querySelector('#audio');
+		let audioEl =  document.querySelector('#music');
+		let audio = audioEl.components.sound
 	    //var ball =  document.querySelector('a-sphere');
-  //       audioEl.addEventListener("ended", function() {
-		// 			audioEl.currentTime = 0;
-		// 			playing = false;
-		// });
+        audio.addEventListener("ended", function() {
+					audio.currentTime = 0;
+					playing = false;
+		});
 
 
 		AFRAME.registerComponent('markerhandler', {
@@ -26,16 +27,14 @@
 			    if (document.querySelector("#hiroMarker").object3D.visible == true && playing == false) {
 			        // MARKER IS PRESENT
 			        alert("MARKER IS PRESENT1");
-		        	audioEl.play();
+		        	audio.playSound();
 		        	playing = true;
 		        }
 		        else {
 		        	alert("MARKER IS PRESENT2");
-		        	audioEl.pause();
-		        	audioEl.currentTime = 0;
+		        	audio.pauseSound();
 		        }
 				//ball.addEventListener('click', function () { playPauseAudio(audio); console.log("Audio Play Toggle") });
-				playing = true;
 
 		  	}
 
