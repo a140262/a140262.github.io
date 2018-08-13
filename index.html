@@ -16,7 +16,7 @@
 			},
 
 		  	tick: function(t, dt) {
-		  	    //var ball = document.querySelector('#sphere');
+
 			    var audioEl = document.querySelector('#music');
 			    var audio = audioEl.components.sound;
 			    if (document.querySelector("#hiroMarker").object3D.visible == true &&  playing == false) {
@@ -25,14 +25,15 @@
 		        	audio.playSound();
 		        	playing = true;
 		           }
-		           if (document.querySelector("#hiroMarker").object3D.visible == false && playing == true)
+		        if (document.querySelector("#hiroMarker").object3D.visible == false && playing == true){
 		        	//alert("MARKER IS NOT PRESENT");
 		        	audio.stopSound();
 		        	audio.currentTime = 0;
 		        	playing = false;
 		          }
 
-			   ball.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle")});
+				 var ball = document.querySelector('#sphere');
+			     ball.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle")});
 
 		  	}
 
