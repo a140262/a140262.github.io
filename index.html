@@ -5,12 +5,9 @@
 	<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 	<script>
 	    var playing = false;
-	    //var ball =  document.querySelector('a-sphere');
+	    var audioEl = document.querySelector('#music');
+		var audio = audioEl.components.sound;
 
-  //  		audioEl.addEventListener("ended", function() {
-		// 			audioEl.currentTime = 0;
-		//  			playing = false;
-		// });
 
 		AFRAME.registerComponent('markerhandler', {
 			init: function() {
@@ -21,8 +18,7 @@
 			},
 
 		  	tick: function(t, dt) {
-		  		var audioEl = document.querySelector('#music');
-				var audio = audioEl.components.sound;
+
 			    if (document.querySelector("#hiroMarker").object3D.visible == true && playing == false) {
 			        // MARKER IS PRESENT
 			        //alert("MARKER IS PRESENT");
@@ -86,7 +82,7 @@
 			    dur="1000"
 			    fill="forwards"
 			    direction="alternate"
-			    to="0.05 0.55 0.5"
+			    to="0.05 0.6 0.5"
 			    easing="ease-in-out"
 			    repeat="indefinite">
 			    </a-animation>
