@@ -4,7 +4,7 @@
 	<script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
 	<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 	<script>
-	    //var playing = false;
+	    var playing = false;
 
 
 		AFRAME.registerComponent('markerhandler', {
@@ -16,67 +16,49 @@
 			},
 
 		  	tick: function(t, dt) {
-		  		var ball = document.querySelector('#sphere');
+		  	    //var ball = document.querySelector('#sphere');
 			    var audioEl = document.querySelector('#music');
 			    var audio = audioEl.components.sound;
-			    if (document.querySelector("#hiroMarker").object3D.visible == true ) {
+			    if (document.querySelector("#hiroMarker").object3D.visible == true &&  playing == false) {
 			        // MARKER IS PRESENT
 			        //alert("MARKER IS PRESENT");
 		        	audio.playSound();
-		        	//playing = true;
-		        }
-		        else {
+		        	playing = true;
+		           }
+		           if (document.querySelector("#hiroMarker").object3D.visible == false && playing == true) 
 		        	//alert("MARKER IS NOT PRESENT");
 		        	audio.stopSound();
 		        	audio.currentTime = 0;
-		        	//playing = false;
-		        }
-
-				//ball.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle")});
-				//playing = true;
+		        	playing = false;
+		          }
+				
+			   ball.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle")});
+			 
 		  	}
 
 
 		});
 
-	 // function playPauseAudio(){
-	 //  	//alert("MARKER IS PRESENT4");
-		// var audioEl =  document.querySelector('#music');
-		// var audio = audioEl.components.sound;
+	 function playPauseAudio(){
+	  	alert("MARKER IS PRESENT4");
+		
+		 var audioEl =  document.querySelector('#music');
+		 var audio = audioEl.components.sound;
+                 if (!playing)
+	  	    alert("PLAY SOUND");
+		    audio.playSound();
+		    playing = true;
+		  }
+		 else{
+	   	     alert("PAUSE SOUND");
+		     audio.stopSound();
+		     audio.currentTime = 0;
+		     playing = false;	 
+		  }
 
-	 //  	    alert("PLAY SOUND");
-		// 	audio.playSound();
-		// 	//playing = true;
-		//  }
-		// else{
-	 //  	    alert("PAUSE SOUND");
-		//     audio.stopSound();
-		//     audio.currentTime = 0;
-
-
-		//   }
-		// playing = !playing;
-
-  //   };
+     };
     </script>
-    <script>
-			AFRAME.registerComponent('audiohandler', {
-			  init:function() {
-			     let playing = false;
-			     let audioEl =  document.querySelector('#music');
-			     let audio = audioEl.components.sound
-			     this.el.addEventListener('click', () => {
-			          if(!playing) {
-			              audio.playSound();
-			           } else {
-			              audio.pauseSound();
-			              audio.currentTime = 0;
-			           }
-			           playing = !playing;
-			     });
-			  }
-			})
-	</script>
+ 
 	<body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
 	</div>
 	   <a-scene id="a-scene" cursor="rayOrigin: mouse" light="defaultLightsEnabled: true" embedded arjs="sourceType:webcam; trackingMethod: best; debugUIEnabled: false; maxDetectionRate:30;">
