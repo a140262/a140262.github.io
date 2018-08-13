@@ -25,8 +25,8 @@
 				//playing = true;
 			}
 			else{
-				intro.pauseSound();
-				audio.pauseSound();
+				intro.stopSound();
+				audio.stopSound();
 				intro.currentTime = 0;
 				audio.currentTime = 0;
 			}
@@ -50,8 +50,8 @@
 		 }
 		else{
 	  	    alert("PAUSE SOUND");
-		    audio.pauseSound();
-		    intro.pauseSound();
+		    audio.stopSound();
+		    intro.stopSound();
 		    audio.currentTime = 0;
 		    intro.currentTime = 0;
 		    playing = !playing;
