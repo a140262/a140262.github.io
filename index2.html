@@ -3,7 +3,7 @@
 <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 <script>
     var playing = false;
-    var start = true;
+    //var start = true;
 
 	AFRAME.registerComponent('markerhandler', {
 
@@ -19,47 +19,46 @@
 	 		var rollout = rolloutEl.components.sound;
 
 		    if (document.querySelector("#animated-marker").object3D.visible == true && playing == false) {
-				if (start){
-					intro.playSound();
-				}
-				else {
-					rollout.addEventListener('sound-ended', function () { intro.playSound(); console.log("Rollout Sound ENDED") });
+				intro.playSound();
+				// audio.playSound();
+				rollout.addEventListener('sound-ended', function () { intro.playSound(); console.log("Rollout Sound ENDED") });
 
-				}
 				playing = true;
 			}
 		   if (document.querySelector("#animated-marker").object3D.visible == false && playing == true){
-				intro.pauseSound();
+				intro.stopSound();
+				// audio.stopSound();
 				intro.currentTime = 0;
-			    playing = false;
+				// audio.currentTime = 0;
+
+				playing = false;
 
 			}
 
-			var model =  document.querySelector('a-gltf-model');
-			model.addEventListener('click', function () { playPauseAudio();console.log("Click Robot")});
+			var model =  document.querySelector('[gltf-model]');
+			model.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle") });
 	  	}
 
 	});
 
 	   function playPauseAudio(){
-		var rolloutEl =  document.querySelector('#rollout');
-	 	var rollout = rolloutEl.components.sound;
-	 	var introEl =  document.querySelector('#intro');
-		var intro = introEl.components.sound;
-
+	   	//alert("MARKER IS PRESENT4");
+	   	var audioEl =  document.querySelector('#rollout');
+	 	var audio = audioEl.components.sound;
 		if (!playing){
-	   	    // alert("PLAY SOUND");
-		    rollout.playSound();
+	   	    alert("PLAY SOUND");
+		    audio.playSound();
 		 }
 		else{
-	   	    // alert("PAUSE SOUND");
-	   	     intro.pauseSound();
-		     //rollout.pauseSound();
-		     //rollout.currentTime = 0;
-		     intro.currentTime = 0;
-	     }
+	   	    alert("PAUSE SOUND");
+		     audio.stopSound();
+		//     intro.stopSound();
+		     audio.currentTime = 0;
+		//     intro.currentTime = 0;
 
-		playing = true;
+	        }
+
+		playing = false;
      };
 
 	</script>
