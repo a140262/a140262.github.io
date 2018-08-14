@@ -22,10 +22,10 @@
 				if (start){
 					intro.playSound();
 				}
-				else {
-					rollout.addEventListener('sound-ended', function () { intro.playSound(); console.log("Rollout Sound ENDED") });
+				// else {
+				// 	rollout.addEventListener('sound-ended', function () { intro.playSound(); console.log("Rollout Sound ENDED") });
 
-				}
+				// }
 				playing = true;
 			}
 		   if (document.querySelector("#animated-marker").object3D.visible == false && playing == true){
@@ -54,8 +54,8 @@
 		else{
 	   	    // alert("PAUSE SOUND");
 	   	     intro.pauseSound();
-		     rollout.pauseSound();
-		     rollout.currentTime = 0;
+		     //rollout.pauseSound();
+		     //rollout.currentTime = 0;
 		     intro.currentTime = 0;
 	     }
 
