@@ -3,65 +3,49 @@
 <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 <script>
     var playing = false;
-    //var start = true;
+
 
 	AFRAME.registerComponent('markerhandler', {
 
 		init: function() {
 		// Set up the tick throttling. Will check if marker is active every 500ms
-			this.tick = AFRAME.utils.throttleTick(this.tick, 500, this);
+		    this.tick = AFRAME.utils.throttleTick(this.tick, 500, this);
 		},
 
 	  	tick: function(t, dt) {
+	  		var start = true;
 			var introEl =  document.querySelector('#intro');
 			var intro = introEl.components.sound;
-			var rolloutEl =  document.querySelector('#rollout');
-	 		var rollout = rolloutEl.components.sound;
 
-		    if (document.querySelector("#animated-marker").object3D.visible == true && playing == false) {
-
-					intro.playSound();
-
-
-
+		    if (document.querySelector("#animated-marker").object3D.visible == true && !playing && start) {
+				intro.playSound();
 				playing = true;
+				start = false;
 			}
 		   if (document.querySelector("#animated-marker").object3D.visible == false && playing == true){
-				intro.stopSound();
-				// audio.stopSound();
-				intro.currentTime = 0;
-				// audio.currentTime = 0;
-
+				intro.pauseSound();
+			    intro.currentTime = 0;
 				playing = false;
 
 			}
 
 			var model =  document.querySelector('[gltf-model]');
 			model.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle") });
+
 	  	}
 
 	});
 
-	   function playPauseAudio(){
-	   	//alert("MARKER IS PRESENT4");
+	function playPauseAudio(){
 	   	var audioEl =  document.querySelector('#rollout');
 	 	var audio = audioEl.components.sound;
-	 	var introEl =  document.querySelector('#intro');
-		var intro = introEl.components.sound;
 		if (!playing){
-	   	    alert("PLAY SOUND");
-	   	    audio.playSound();
-	    	this.el.addEventListener('sound-ended', function () { intro.playSound(); console.log("Rollout Sound ENDED") });
-
+		    audio.playSound();;
 		 }
 		else{
-	   	    alert("PAUSE SOUND");
-		     audio.stopSound();
-		//     intro.stopSound();
+		     audio.pauseSound();
 		     audio.currentTime = 0;
-		//     intro.currentTime = 0;
-
-	        }
+	     }
 
 		playing = false;
      };
@@ -116,8 +100,8 @@
              </a-animation>
             </a-entity>
 	    </a-marker>
-	    <a-sound id="rollout" src="#audio2" autoplay="false"></a-sound>
-        <a-sound id="intro" src="#audio1" autoplay="false"></a-sound>
+	    <a-entity id="rollout" sound="src: #audio2; autoplay: false;"></a-entity>
+	    <a-entity id="intro" sound="src: #audio1; autoplay: false;"></a-entity>
         <a-entity camera></a-entity>
 	</a-scene>
 </body>
