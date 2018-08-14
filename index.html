@@ -19,16 +19,13 @@
 			    var audioEl = document.querySelector('#music');
 			    var audio = audioEl.components.sound;
 			    if (document.querySelector("#hiroMarker").object3D.visible == true &&  playing == false) {
-				// MARKER IS PRESENT
-				//alert("MARKER IS PRESENT");
-				audio.playSound();
-				playing = true;
+					audio.playSound();
+					playing = true;
 			   }
 			if (document.querySelector("#hiroMarker").object3D.visible == false && playing == true){
-				//alert("MARKER IS NOT PRESENT");
-				audio.pauseSound();
-				//audio.currentTime = 0;
-				playing = false;
+					audio.pauseSound();
+					//audio.currentTime = 0;
+					playing = false;
 			  }
 
 			     var ball = document.querySelector('#sphere');
@@ -37,11 +34,11 @@
 			     });
 
 			    //Detect end of audio
-			    var aEl = document.querySelector('#audio');
-			    aEl.addEventListener("ended", function() {
-				alert("Audio is ENDED");
-				intro.currentTime = 0;
-				playing = false;
+			    var aEl = document.querySelector('#music');
+			    aEl.addEventListener("sound-ended", function() {
+					console.log("Audio Is ENDED")
+					intro.currentTime = 0;
+					playing = false;
 			    });
 
 			}
@@ -109,8 +106,8 @@
                    <a-animation attribute="rotation" dur="8000" direction="alternate" fill="forwards" from="90 0 0" to="450 0 0" repeat="indefinite">
 	               </a-animation>
 	           </a-entity>
+	           <a-entity id="music" position="0.5 0.5 0.5" sound="src: #audio; autoplay: false;"></a-entity>
 	       </a-marker>
-	       <a-entity id="music" position="0.5 0.5 0.5" sound="src: #audio; autoplay: false;"></a-entity>
   	       <a-entity camera></a-entity>
 		</a-scene>
 	</body>
