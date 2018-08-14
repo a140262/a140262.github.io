@@ -27,7 +27,7 @@
 			if (document.querySelector("#hiroMarker").object3D.visible == false && playing == true){
 				//alert("MARKER IS NOT PRESENT");
 				audio.pauseSound();
-				audio.currentTime = 0;
+				//audio.currentTime = 0;
 				playing = false;
 			  }
 
@@ -37,7 +37,9 @@
 			     });
 
 			    //Detect end of audio
-			    audioEl.addEventListener("ended", function() {
+			    var aEl = document.querySelector('#audio');
+			    aEl.addEventListener("ended", function() {
+				alert("Audio is ENDED");
 				intro.currentTime = 0;
 				playing = false;
 			    });
