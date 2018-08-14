@@ -3,7 +3,7 @@
 <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 <script>
     var playing = false;
-    //var start = true;
+    var start = true;
 
 	AFRAME.registerComponent('markerhandler', {
 
@@ -15,35 +15,40 @@
 	  	tick: function(t, dt) {
 			var introEl =  document.querySelector('#intro');
 			var intro = introEl.components.sound;
+			var rolloutEl =  document.querySelector('#rollout');
+	 		var rollout = rolloutEl.components.sound;
 
 		    if (document.querySelector("#animated-marker").object3D.visible == true && playing == false) {
-				intro.playSound();
+				if (start){
+					intro.playSound();
+				}
+				else {
+					rollout.addEventListener('sound-ended', function () { intro.playSound(); console.log("Rollout Sound ENDED") });
+
+				}
 				playing = true;
 			}
 		   if (document.querySelector("#animated-marker").object3D.visible == false && playing == true){
-				intro.stopSound();
+				intro.pauseSound();
 				intro.currentTime = 0;
-			    audio.currentTime = 0;
-				playing = false;
+			    playing = false;
 
 			}
 
 			var model =  document.querySelector('[gltf-model]');
-			model.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle") });
+			model.addEventListener('click', function () { playPauseAudio(rollout);});
 	  	}
 
 	});
 
-	   function playPauseAudio(){
-	   	var audioEl =  document.querySelector('#rollout');
-	 	var audio = audioEl.components.sound;
+	   function playPauseAudio(audio){
 		if (!playing){
 	   	    // alert("PLAY SOUND");
 		    audio.playSound();
 		 }
 		else{
 	   	    // alert("PAUSE SOUND");
-		     audio.stopSound();
+		     audio.pauseSound();
 		     audio.currentTime = 0;
 	     }
 
@@ -101,7 +106,7 @@
             </a-entity>
 	    </a-marker>
 	    <a-entity id="rollout" sound="src: #audio2; autoplay: false;"></a-entity>
-	    <a-entity id="intro" sound="src: #audio1; autoplay: false;"></a-entity>
+	    <a-entity id="intro" sound="src: #audio1; autoplay: false; loop: true"></a-entity>
         <a-entity camera></a-entity>
 	</a-scene>
 </body>
