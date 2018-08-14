@@ -6,7 +6,6 @@
 	<script>
 	    var playing = false;
 
-
 		AFRAME.registerComponent('markerhandler', {
 			init: function() {
 
@@ -15,37 +14,45 @@
 
 			},
 
-		  	tick: function(t, dt) {
+			tick: function(t, dt) {
 
 			    var audioEl = document.querySelector('#music');
 			    var audio = audioEl.components.sound;
 			    if (document.querySelector("#hiroMarker").object3D.visible == true &&  playing == false) {
-			        // MARKER IS PRESENT
-			        //alert("MARKER IS PRESENT");
-		        	audio.playSound();
-		        	playing = true;
-		           }
-		        if (document.querySelector("#hiroMarker").object3D.visible == false && playing == true){
-		        	//alert("MARKER IS NOT PRESENT");
-		        	audio.pauseSound();
-		        	audio.currentTime = 0;
-		        	playing = false;
-		          }
+				// MARKER IS PRESENT
+				//alert("MARKER IS PRESENT");
+				audio.playSound();
+				playing = true;
+			   }
+			if (document.querySelector("#hiroMarker").object3D.visible == false && playing == true){
+				//alert("MARKER IS NOT PRESENT");
+				audio.pauseSound();
+				audio.currentTime = 0;
+				playing = false;
+			  }
 
 			     var ball = document.querySelector('#sphere');
-			     ball.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle")});
+			     ball.addEventListener('click', function () { 
+				     playPauseAudio(); 
+			     });
 
-		  	}
+			    //Detect end of audio
+			     audioEl.addEventListener("ended", function() {
+				intro.currentTime = 0;
+				playing = false;
+			    });
+
+			}
 
 
 		});
 
-	 function playPauseAudio(){
-	  	//alert("MARKER IS PRESENT4");
+	 	function playPauseAudio(){
+		//alert("MARKER IS PRESENT4");
 
 		 var audioEl =  document.querySelector('#music');
 		 var audio = audioEl.components.sound;
-         if (!playing){
+              	 if (!playing){
 	  	   // alert("PLAY SOUND");
 		    audio.playSound();
 		  }
