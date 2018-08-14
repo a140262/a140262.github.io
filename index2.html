@@ -36,20 +36,27 @@
 			}
 
 			var model =  document.querySelector('[gltf-model]');
-			model.addEventListener('click', function () { playPauseAudio(rollout);});
+			model.addEventListener('click', function () { playPauseAudio();});
 	  	}
 
 	});
 
-	   function playPauseAudio(audio){
+	   function playPauseAudio(){
+		var rolloutEl =  document.querySelector('#rollout');
+	 	var rollout = rolloutEl.components.sound;
+	 	var introEl =  document.querySelector('#intro');
+		var intro = introEl.components.sound;
+
 		if (!playing){
 	   	    // alert("PLAY SOUND");
 		    audio.playSound();
 		 }
 		else{
 	   	    // alert("PAUSE SOUND");
+	   	     intro.pauseSound();
 		     audio.pauseSound();
 		     audio.currentTime = 0;
+		     intro.currentTime = 0;
 	     }
 
 		playing = true;
