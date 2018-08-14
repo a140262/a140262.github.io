@@ -22,25 +22,25 @@
 					audio.playSound();
 					playing = true;
 			   }
-			    //Detect end of audio
-			    //var aEl = document.querySelector('#music');
-			    audioEl.addEventListener("sound-ended", function() {
-					console.log("Audio Is ENDED")
+
+			   if (document.querySelector("#hiroMarker").object3D.visible == false && playing == true){
+					audio.pauseSound();
 					audio.currentTime = 0;
 					playing = false;
-			    });
-			// if (document.querySelector("#hiroMarker").object3D.visible == false && playing == true){
-			// 		audio.pauseSound();
-			// 		audio.currentTime = 0;
-			// 		playing = false;
-			//   }
+			  }
 
 			     var ball = document.querySelector('#sphere');
 			     ball.addEventListener('click', function () {
 				     playPauseAudio();
 			     });
 
-
+  				//Detect end of audio
+			    //var aEl = document.querySelector('#music');
+			    audioEl.addEventListener("sound-ended", function() {
+					console.log("Audio Is ENDED")
+					audio.currentTime = 0;
+					playing = false;
+			    });
 
 			}
 
