@@ -22,10 +22,10 @@
 				if (start){
 					intro.playSound();
 				}
-				// else {
-				// 	rollout.addEventListener('sound-ended', function () { intro.playSound(); console.log("Rollout Sound ENDED") });
+				else {
+					rollout.addEventListener('sound-ended', function () { intro.playSound(); console.log("Rollout Sound ENDED") });
 
-				// }
+				}
 				playing = true;
 			}
 		   if (document.querySelector("#animated-marker").object3D.visible == false && playing == true){
