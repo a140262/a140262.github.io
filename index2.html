@@ -3,7 +3,7 @@
 <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 <script>
     var playing = false;
-    //var start = true;
+    var start = true;
 
 	AFRAME.registerComponent('markerhandler', {
 
@@ -19,9 +19,14 @@
 	 		var rollout = rolloutEl.components.sound;
 
 		    if (document.querySelector("#animated-marker").object3D.visible == true && playing == false) {
-				intro.playSound();
-				// audio.playSound();
-				rolloutEl.addEventListener('sound-ended', function () { intro.playSound(); console.log("Rollout Sound ENDED") });
+				if (start == true){
+					intro.playSound();
+
+				}
+				else{
+					rolloutEl.addEventListener('sound-ended', function () { intro.playSound(); console.log("Rollout Sound ENDED") });
+
+				}
 
 				playing = true;
 			}
