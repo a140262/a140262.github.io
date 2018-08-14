@@ -21,7 +21,7 @@
 		    if (document.querySelector("#animated-marker").object3D.visible == true && playing == false) {
 				intro.playSound();
 				// audio.playSound();
-				rollout.addEventListener('sound-ended', function () { intro.playSound(); console.log("Rollout Sound ENDED") });
+				rolloutEl.addEventListener('sound-ended', function () { intro.playSound(); console.log("Rollout Sound ENDED") });
 
 				playing = true;
 			}
