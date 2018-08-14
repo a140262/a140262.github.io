@@ -59,7 +59,7 @@
 		     intro.currentTime = 0;
 	     }
 
-		playing = false;
+		playing = true;
      };
 
 	</script>
@@ -111,9 +111,9 @@
              <a-animation attribute="position" dur="2000" direction="alternate" to="3 -1.5 0.5" repeat="indefinite">
              </a-animation>
             </a-entity>
-            <a-sound id="rollout" src="#audio2" autoplay="false"></a-sound>
-            <a-sound id="intro" src="#audio1" autoplay="false"></a-sound>
 	    </a-marker>
+	    <a-sound id="rollout" src="#audio2" autoplay="false"></a-sound>
+        <a-sound id="intro" src="#audio1" autoplay="false"></a-sound>
         <a-entity camera></a-entity>
 	</a-scene>
 </body>
