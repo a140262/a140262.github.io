@@ -6,6 +6,7 @@
 	<script>
 	    var playing = false;
 
+
 		AFRAME.registerComponent('markerhandler', {
 			init: function() {
 
@@ -14,44 +15,44 @@
 
 			},
 
-			tick: function(t, dt) {
+		  	tick: function(t, dt) {
 
 			    var audioEl = document.querySelector('#music');
 			    var audio = audioEl.components.sound;
 			    if (document.querySelector("#hiroMarker").object3D.visible == true &&  playing == false) {
-					audio.playSound();
+			        // MARKER IS PRESENT
+			        //alert("MARKER IS PRESENT");
+		        	audio.playSound();
 					playing = true;
-			   }
 
-			   if (document.querySelector("#hiroMarker").object3D.visible == false && playing == true){
-					audio.pauseSound();
-					audio.currentTime = 0;
-					playing = false;
-			  }
+		        // if (document.querySelector("#hiroMarker").object3D.visible == false && playing == true){
+		        // 	//alert("MARKER IS NOT PRESENT");
+		        // 	audio.pauseSound();
+		        // 	audio.currentTime = 0;
+		        // 	playing = false;
+		        //   }
 
-			     var ball = document.querySelector('#sphere');
-			     ball.addEventListener('click', function () {
-				     playPauseAudio();
-			     });
+				 var ball = document.querySelector('#sphere');
+			     ball.addEventListener('click', function () { playPauseAudio(); console.log("Audio Play Toggle")});
+			 }
 
-			}
+
+		  	}
 
 
 		});
 
-	 	function playPauseAudio(){
+	 function playPauseAudio(){
 		 var audioEl =  document.querySelector('#music');
 		 var audio = audioEl.components.sound;
          if (!playing){
-	  	   // alert("PLAY SOUND");
 		    audio.playSound();
 		  }
 		 else{
-	   	  //   alert("PAUSE SOUND");
 		     audio.pauseSound();
 		     audio.currentTime = 0;
 		  }
-		 playing = true;
+		 playing = false;
 
      };
     </script>
@@ -65,8 +66,8 @@
             <a-asset-item id="saucer-mtl" src="models/spaceship.mtl"></a-asset-item>
           </a-assets>
 
-          <a-marker-camera id="hiroMarker"  markerhandler emitevents="true" type='pattern' url='patterns/pattern-lo.patt'>
-	          <a-text value="Thank You Friend!"
+          <a-marker-camera id="hiroMarker"  markerhandler emitevents="true" type='pattern' url='patterns/pattern-agl.patt'>
+	          <a-text value="Go Girl 2018"
 				position="0.05 0.5 0.5"
 				rotation="-90 0 0"
 				font="mozillavr"
@@ -99,9 +100,9 @@
                    <a-animation attribute="rotation" dur="8000" direction="alternate" fill="forwards" from="90 0 0" to="450 0 0" repeat="indefinite">
 	               </a-animation>
 	           </a-entity>
-	           <!-- <a-entity id="music" position="0.5 0.5 0.5" sound="src: #audio; autoplay: false;"></a-entity> -->
+	           <a-entity id="music" position="0.5 0.5 0.5" sound="src: #audio; autoplay: false; loop: true;"></a-entity>
 	       </a-marker-camera>
-	        <a-sound id="music" src="#audio" autoplay="false" loop="true" position="0.5 0.5 0.5"></a-sound>
+  	       <a-entity camera></a-entity>
 		</a-scene>
 	</body>
 <html>
