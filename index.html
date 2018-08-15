@@ -65,7 +65,7 @@
             <a-asset-item id="saucer-mtl" src="models/spaceship.mtl"></a-asset-item>
           </a-assets>
 
-          <a-marker id="hiroMarker"  markerhandler emitevents="true" type='pattern' url='patterns/pattern-lo.patt'>
+          <a-marker-camera id="hiroMarker"  markerhandler emitevents="true" type='pattern' url='patterns/pattern-lo.patt'>
 	          <a-text value="Thank You Friend!"
 				position="0.05 0.5 0.5"
 				rotation="-90 0 0"
@@ -101,8 +101,7 @@
 	           </a-entity>
 	           <a-sound id="music" src="#audio" autoplay="false" loop="true" position="0.5 0.5 0.5"></a-sound>
 	           <!-- <a-entity id="music" position="0.5 0.5 0.5" sound="src: #audio; autoplay: false;"></a-entity> -->
-	       </a-marker>
-  	       <a-entity camera></a-entity>
+	       </a-marker-camera>
 		</a-scene>
 	</body>
 <html>
