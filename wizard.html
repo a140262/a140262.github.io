@@ -1,0 +1,35 @@
+<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+<script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+
+<body style="margin : 0px; overflow: hidden;">
+    <a-scene embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; debugUIEnabled: false;'>
+        <a-entity light="type: ambient; intensity: 0.3;"></a-entity>
+        <a-entity light="type: directional;
+        castShadow: true;
+        intensity: 0.8;" position="4 3 0"></a-entity>
+            <a-asset-item id="animated-asset" src="wizardtower/scene.gltf"></a-asset-item>
+        </a-assets>
+        <a-marker-camera id="animated-marker" type='pattern' url='patterns/pattern-agl.patt'>
+            <a-gltf-model audiohandler src="#animated-asset"
+                scale="0.1 0.1 0.1"
+                rotation="-90 0 -5"
+                position="0 0 0.35"
+                fill="forwards"
+                animation-mixer="loop:repeat">
+                <a-animation
+                attribute="position"
+                dur="12000"
+                fill="forwards"
+                to="0 1 -0.15"
+                easing="ease-in-out"
+                repeat="indefinite">
+                </a-animation>
+            </a-gltf-model>
+        </a-marker-camera>
+    </a-scene>
+</body>
+<script>
+// Lets place some help text in case if some bug occurs. IGNORE this
+ document.body.innerHTML = document.body.innerHTML + "<div style='position:fixed;top:0px;left:1.25%;padding:1px;width:95%;height:30px;background:rgba(0,0,0,0.5);color:white;font-weight:bold;text-align:center;margin:5px;font-size:18px'>Go Girl Go For IT 2018</div>";
+</script>

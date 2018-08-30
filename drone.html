@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+    <head>
+        <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+        <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
+        <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+        <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    </head>
+    <script>
+
+        AFRAME.registerComponent('action', {
+            schema: {
+            to: {default: '2.5 2.5 2.5'}
+            },
+            init: function () {
+
+                var data = this.data;
+                this.el.addEventListener('click', function () {
+                    this.setAttribute('scale', data.to);
+                    this.setAttribute('opacity', 0.5);
+                    this.removeAttribute('material','color');
+                    var scene = document.querySelector('a-scene');
+                    var El = document.createElement('a-entity');
+
+                    El.setAttribute('gltf-model', '#drone');
+                    El.setAttribute('id', 'drone1');
+                    El.setAttribute('position', {x:0,y:0.5,z:0});
+                    El.setAttribute('focus', '');
+                    this.parentNode.appendChild(El);
+                    this.parentNode.removeChild(this);
+                 });
+                this.el.addEventListener('mouseleave', function () {
+                    this.setAttribute('scale', {x:1,y:1,z:1});
+                    //this.parentNode.removeChild(document.querySelector('#drone1'));
+                });
+            }
+        });
+
+        AFRAME.registerComponent('focus', {
+            init: function () {
+                this.el.addEventListener('mouseenter', function () {
+                    this.removeAttribute('animation-mixer');
+                });
+                this.el.addEventListener('mouseleave', function () {
+
+                    this.setAttribute("animation-mixer",'');
+                });
+            }
+        });
+    </script>
+    <body style='margin : 0px; overflow: hidden; width:100%; height:100% ' >
+            <a-scene light="defaultLightsEnabled: true" embedded arjs='sourceType: webcam; debugUIEnabled: false; trackingMethod: best ' vr-mode-ui = "enabled：false">
+                <a-assets>
+                        <a-asset-item id="drone" src="models/busterDrone.gltf"></a-asset-item>
+
+                </a-assets>
+                <a-entity id="#rig" position="0 0 0" rotation="0 0 0">
+                    <!-- <a-camera id="camera" reverse-mouse-drag="true"  > -->
+                         <a-marker-camera type='pattern' url='patterns/pattern-agl.patt'>
+                            <a-entity gltf-model="#drone"  rotation="-90 0 0" position="0 0.5 0" scale="0.7 0.7 0.7" animation-mixer="loop:repeat">
+                            </a-entity>
+                             <a-text value="Go Girl 2018"
+                                position="0.05 0.2 1"
+                                rotation="-90 0 0"
+                                font="mozillavr"
+                                color="#4682b4"
+                                side="double"
+                                align="center"
+                                width="3">
+                                 <a-animation
+                                    attribute="position"
+                                    dur="1000"
+                                    fill="forwards"
+                                    direction="alternate"
+                                    to="0.05 0.25 1"
+                                    easing="ease-in-out"
+                                    repeat="indefinite">
+                                    </a-animation>
+                              </a-text>
+                        </a-marker-camera>
+                    <!-- </a-camera> -->
+                </a-entity>
+            </a-scene>
+    </body>
+</html>
